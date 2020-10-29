@@ -1,0 +1,4 @@
+---
+- name: Install repositories
+  import_tasks: repositories.yml
+
