@@ -1,0 +1,14 @@
+---
+- name: Configure integrated terminal to use bash 1/2
+  ansible.builtin.lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.var/app/com.vscodium.codium/config/VSCodium/User/settings.json"
+    regexp: '^"terminal\.integrated\.shell\.linux":.*",'
+    line: '"terminal.integrated.shell.linux": "flatpak-spawn",'
+    insertbefore: '^}'
+
+- name: Configure integrated terminal to use bash 2/2
+  ansible.builtin.lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.var/app/com.vscodium.codium/config/VSCodium/User/settings.json"
+    regexp: '^"terminal\.integrated\.shellArgs\.linux":.*'
+    line: '"terminal.integrated.shellArgs.linux": [ "--host", "--env=TERM=xterm-256color", "toolbox", "enter" ],'
+    insertbefore: '^}'
