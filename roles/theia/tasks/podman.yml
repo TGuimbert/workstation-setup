@@ -1,0 +1,12 @@
+---
+- name: Create podman container for theia
+  containers.podman.podman_container:
+    name: theia
+    image: theiaide/theia:latest
+    init: yes
+    interactive: yes
+    tty: yes
+    ports:
+      - "3000:3000"
+    
+    
